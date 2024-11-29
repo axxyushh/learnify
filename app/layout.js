@@ -1,6 +1,7 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import {Roboto} from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import Provider from "./provider";
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -14,10 +15,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={roboto.className}>
+          <Provider>
+            {children}
+          </Provider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
