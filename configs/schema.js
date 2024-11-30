@@ -1,5 +1,5 @@
 // import { boolean, pgTable, serial, varchar, text, jsonb } from "drizzle-orm/pg-core";
-import { boolean, pgTable, serial, varchar, text } from 'drizzle-orm/pg-core';
+import { boolean, pgTable, serial, varchar, json } from 'drizzle-orm/pg-core';
 
 export const USER_TABLE = pgTable('users', {
   id: serial().primaryKey(),
@@ -14,7 +14,7 @@ export const STUDY_MATERIAL_TABLE = pgTable('studyMaterial', {
   courseType: varchar().notNull(),
   topic: varchar().notNull(),
   difficultyLevel: varchar().default('Easy'),
-  courseLayout: text(), // Use text to store JSON data as a string
+  courseLayout: json(), // Use text to store JSON data as a string
   createdBy: varchar().notNull(),
   status: varchar().default('Generating'),
 });
