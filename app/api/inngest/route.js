@@ -1,6 +1,6 @@
 import { serve } from "inngest/next";
 import { inngest } from "@/inngest/client.js";
-import { CreateNewUser, helloWorld } from "@/inngest/functions";
+import { CreateNewUser, GenerateNotes, helloWorld } from "@/inngest/functions";
 
 // API configuration to serve Inngest functions
 export const { GET, POST, PUT } = serve({
@@ -8,6 +8,7 @@ export const { GET, POST, PUT } = serve({
   functions: [
     helloWorld,
     CreateNewUser,
+    GenerateNotes,
   ],
 });
 
