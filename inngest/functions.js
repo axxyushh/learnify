@@ -81,6 +81,5 @@ export const GenerateNotes = inngest.createFunction(
             return 'Success';
         });
 
-
     }
 )

@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 function Create() {
 
@@ -39,7 +40,9 @@ function Create() {
       });
       setLoading(false)
       router.replace('/dashboard')
-
+      
+      //Toast Notification
+      toast('Please wait while your course content is generating, Click Refresh')
       console.log(result.data.result.resp)
 
     }

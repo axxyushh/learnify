@@ -2,6 +2,7 @@ import "./globals.css";
 import {Roboto} from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <Provider>
             {children}
           </Provider>
+          <Toaster/>
         </body>
       </html>
     </ClerkProvider>
