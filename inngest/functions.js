@@ -85,7 +85,7 @@ export const GenerateNotes = inngest.createFunction(
 )
 
 //To Generate flashcard, Quiz, Question Answer
-export const GenerateStudyTypeContent = inngest.createFunction(
-    {id:'Generate Study Type Content'}
-    
-)
+// export const GenerateStudyTypeContent = inngest.createFunction(
+//     {id:'Generate Study Type Content'}
+
+// )
