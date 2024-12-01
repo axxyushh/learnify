@@ -1,0 +1,12 @@
+version: "2"
+tasks:
+  - id: my_task
+    type: io.kestra.core.tasks.system.Runner
+    inputs:
+      command: "echo Hello from Kestra!"
+
+schedules:
+  - name: my_schedule
+    cron: "0 * * * *"  # Runs every hour
+    tasks:
+      - my_task
