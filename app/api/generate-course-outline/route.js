@@ -30,7 +30,6 @@ export async function POST(req) {
             course: dbResult[0].resp
         }
     });
-
     console.log(result);
 
 

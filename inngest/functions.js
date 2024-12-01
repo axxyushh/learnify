@@ -56,7 +56,7 @@ export const GenerateNotes = inngest.createFunction(
         const noteResult = await step.run('Generate Chapter Notes',async() => {
             const Chapters = course?.courseLayout?.chapters;
             let index = 0;
-            Chapters.forEach(async(chapter) => {
+            Chapters.   forEach(async(chapter) => {
                 const PROMPT = 'Generate exam material detail content for each chapter , Make sure to include all topic points in very depth and detailed, also add short and important points in the content, make sure to give content in HTML format(Do not add HTMLKL,Head,Body,title tag),title should be of h2 , The chapters:'+JSON.stringify(chapter);
                 const result = await generateNotesAiModel.sendMessage(PROMPT);
                 const aiResp = result.response.text();
@@ -64,7 +64,7 @@ export const GenerateNotes = inngest.createFunction(
                 await db.insert(CHAPTER_NOTES_TABLE).values({
                     chapterId: index,
                     course: course?.courseId,
-                    notes:aiResp
+                    notes: aiResp
                 })
 
                 index = index + 1;
@@ -76,7 +76,7 @@ export const GenerateNotes = inngest.createFunction(
         const UpdateCourseStatusResult = await step.run('Update Course Status to Ready',async() => {
             const result = await db.update(STUDY_MATERIAL_TABLE).set({
                 status: 'Generated'
-            }).where(eq(STUDY_MATERIAL_TABLE.courseId,course?.courseId))
+            }) .where(eq(STUDY_MATERIAL_TABLE.courseId,course?.courseId))
 
             return 'Success';
         });
