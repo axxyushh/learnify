@@ -8,7 +8,7 @@ export async function POST(req) {
 
     const {courseId,topic,courseType,difficultyLevel,createdBy} = await req.json();
 
-    const PROMPT = 'Generate a study material for '+topic+' for '+courseType+' and level of difficulty will be '+difficultyLevel+' with summary of courses, list of chapters along with summary for each chapter, Topic list in each chapter, All results in JSON format.'
+    const PROMPT = 'Generate a study material for '+topic+' for '+courseType+' and level of difficulty will be '+difficultyLevel+' with summary of courses, list of chapters along with summary for each chapter, Topic list in each chapter,and emoji icon for all chapters, All results in JSON format.'
 
     //Generate Course Layout using AI
     const aiResp = await courseOutlineAIModel.sendMessage(PROMPT);
