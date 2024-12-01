@@ -48,9 +48,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-indigo-100">
       {/* Navbar */}
-      <nav className="flex justify-between gap-2 items-center p-6 bg-white shadow-lg">
-        <Image src={'/logo.svg'} alt='logo' width={40} height={40}/>
-        <h1 className="text-3xl font-bold text-indigo-600">Learnify</h1>
+      <nav className="flex justify-between items-center p-6 bg-white shadow-lg">
+        <div className="flex items-center gap-2">
+          <Image src={'/logo.svg'} alt='logo' width={40} height={40} />
+          <h1 className="text-3xl font-bold text-indigo-600">Learnify</h1>
+        </div>
         <UserButton />
       </nav>
 
