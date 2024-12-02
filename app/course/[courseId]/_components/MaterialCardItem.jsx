@@ -1,12 +1,47 @@
 import { Button } from '@/components/ui/button'
+import axios from 'axios'
+import { RefreshCcw } from 'lucide-react';
 import Image from 'next/image'
-import React from 'react'
+import Link from 'next/link';
+import React, { useState } from 'react'
+import { toast } from 'sonner';
 
-function MaterialCardItem({item,studyTypeContent}) {
+function MaterialCardItem({item,studyTypeContent, course, refreshData}) {
+
+  const [loading, setLoading] = useState(false);
+
+  const GenerateContent = async () => {
+    toast('Generating....')
+    setLoading(true);
+    const chapters = course?.courseLayout.chapters.map(chapter => chapter.chapterTitle);
+  
+    console.log("Generated Chapters:", chapters);
+  
+    try {
+      const result = await axios.post('/api/study-type-content', {
+        courseId: course?.courseId,
+        type: item.name,
+        chapters: chapters,
+      });
+  
+      console.log("API Response:", result.data);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+      refreshData(true);
+      toast('Content is ready to view')
+    }
+  };
+
+  
+  
+
   return (
+    <Link href={'/course/'+course?.courseId+item.path}>
+
     <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center
       ${studyTypeContent?.[item.type]?.length==null&&'grayscale'}
-    `}>
+      `}>
         {
           studyTypeContent?.[item.type]?.length==null
           ?''
@@ -17,10 +52,14 @@ function MaterialCardItem({item,studyTypeContent}) {
         <p className='text-gray-500 text-sm text-center'>{item.desc}</p>
         {
           studyTypeContent?.[item.type]?.length==null
-          ?<Button className='mt-3 w-full' variant='outline'>Genrate</Button>
+          ?<Button className='mt-3 w-full' variant='outline' onClick={() => GenerateContent()}>
+            {loading && <RefreshCcw className='animate-spin'/>}
+            Generate
+          </Button>
           :<Button className='mt-3 w-full' variant='outline'>View</Button>
         }
     </div>
+    </Link>
   )
 }
 

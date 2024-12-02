@@ -1,8 +1,8 @@
 import { inngest } from "./client";
-import {STUDY_MATERIAL_TABLE, USER_TABLE} from "../configs/schema";
+import {STUDY_MATERIAL_TABLE, STUDY_TYPE_CONTENT_TABLE, USER_TABLE} from "../configs/schema";
 import {db} from "../configs/db";
 import { eq } from 'drizzle-orm';
-import { generateNotesAiModel } from "@/configs/AiModel";
+import { generateNotesAiModel, GenerateStudyTypeContentAiModel } from "@/configs/AiModel";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
@@ -84,8 +84,37 @@ export const GenerateNotes = inngest.createFunction(
     }
 )
 
-//To Generate flashcard, Quiz, Question Answer
-// export const GenerateStudyTypeContent = inngest.createFunction(
-//     {id:'Generate Study Type Content'}
-
-// )
+// To Generate flashcard, Quiz, Question Answer
+export const GenerateStudyTypeContent = inngest.createFunction(
+    { id: 'Generate Study Type Content' },
+    { event: 'studyType.content' },
+    async ({ event, step }) => {
+      const { studyType, prompt, courseId, recordId } = event.data;
+  
+      console.log("Received Inngest Event:", event.data);
+  
+      try {
+        const FlashcardAiResult = await step.run('Generating Flashcard using AI', async () => {
+          const result = await GenerateStudyTypeContentAiModel.sendMessage(prompt);
+          const AIResult = JSON.parse(result.response.text());
+          return AIResult;
+        });
+  
+        console.log("AI Result:", FlashcardAiResult);
+  
+        // Save Result
+        await step.run('Save Result to DB', async () => {
+          const dbResult = await db.update(STUDY_TYPE_CONTENT_TABLE)
+            .set({ content: FlashcardAiResult, status: "Generated" })
+            .where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId));
+  
+          console.log("Database Update Result:", dbResult);
+          return 'Inserted Successfully';
+        });
+      } catch (error) {
+        console.error("Error in Inngest Function:", error);
+        throw error;
+      }
+    }
+  );
+  

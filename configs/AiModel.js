@@ -109,5 +109,45 @@ const generationConfig = {
     ],
   });
 
+
+  export  const GenerateStudyTypeContentAiModel = model.startChat({
+    generationConfig,
+    history: [
+      {
+        role: "user",
+        parts: [
+          {text: "Generate the Flashcard on topic: Flutter Fundamentals, User Interface(UI) development, Basic App Navigation in JSON format with front back content, Maximum 15."},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "```json\n[\n  {\n    \"front\": \"What is a Widget in Flutter?\",\n    \"back\": \"The fundamental building block of Flutter UI. Everything you see on the screen is a widget.\"\n  },\n  {\n    \"front\": \"What are the two main types of widgets?\",\n    \"back\": \"StatelessWidget and StatefulWidget.\"\n  },\n  {\n    \"front\": \"Explain the difference between StatelessWidget and StatefulWidget.\",\n    \"back\": \"StatelessWidget: immutable, doesn't change after creation. StatefulWidget: mutable, can update its UI.\"\n  },\n  {\n    \"front\": \"What is the purpose of the `build()` method?\",\n    \"back\": \"It describes the UI of a widget based on its current state. Called whenever a widget needs to be redrawn.\"\n  },\n  {\n    \"front\": \"Name three common layout widgets.\",\n    \"back\": \"Row, Column, and Container.\"\n  },\n  {\n    \"front\": \"What is the role of a `Container` widget?\",\n    \"back\": \"Provides padding, margin, background color, and other styling to its child widget(s).\"\n  },\n  {\n    \"front\": \"How do you add a Text widget to the UI?\",\n    \"back\": \"Using the `Text()` constructor, specifying the text as a string argument.\"\n  },\n  {\n    \"front\": \"What widget is typically used for images?\",\n    \"back\": \"Image.network() or Image.asset()\"\n  },\n  {\n    \"front\": \"What is the `MaterialApp` widget?\",\n    \"back\": \"The root widget for most Flutter apps, providing Material Design theming and navigation.\"\n  },\n  {\n    \"front\": \"How to navigate to a new screen using `Navigator`?\",\n    \"back\": \"Use `Navigator.push()` to push a new route onto the navigation stack and `Navigator.pop()` to return.\"\n  },\n  {\n    \"front\": \"What is a Route in Flutter Navigation?\",\n    \"back\": \"A Route represents a single screen or page in your app's navigation.\"\n  },\n  {\n    \"front\": \"What is the purpose of a `Scaffold` widget?\",\n    \"back\": \"Provides a basic visual layout structure for a Material Design app, including app bar, body, and floating action button.\"\n  },\n  {\n    \"front\": \"How to pass data between screens during navigation?\",\n    \"back\": \"Use arguments with `Navigator.push()` and receive them in the new screen's constructor.\"\n  },\n  {\n    \"front\": \"What is a `Key` in Flutter?\",\n    \"back\": \"Used to uniquely identify widgets, allowing Flutter to efficiently update the UI.  Useful when using dynamic lists or animating widgets.\"\n  },\n  {\n    \"front\": \"What is the difference between `setState()` and `rebuild()`?\",\n    \"back\": \"`setState()` triggers a rebuild of the StatefulWidget. `rebuild()` is called internally by Flutter; you don't directly call it.\"\n  }\n]\n```\n"},
+        ],
+      },
+    ],
+  });
+
+
+
+
+  // export const chatSession = model.startChat({
+  //   generationConfig,
+  //   history: [
+  //     {
+  //       role: "user",
+  //       parts: [
+  //         {text: "Generate the Flashcard on topic: Flutter Fundamentals, User Interface(UI) development, Basic App Navigation in JSON format with front back content, Maximum 15."},
+  //       ],
+  //     },
+  //     {
+  //       role: "model",
+  //       parts: [
+  //         {text: "```json\n[\n  {\n    \"front\": \"What is a Widget in Flutter?\",\n    \"back\": \"The fundamental building block of Flutter UI. Everything you see on the screen is a widget.\"\n  },\n  {\n    \"front\": \"What are the two main types of widgets?\",\n    \"back\": \"StatelessWidget and StatefulWidget.\"\n  },\n  {\n    \"front\": \"Explain the difference between StatelessWidget and StatefulWidget.\",\n    \"back\": \"StatelessWidget: immutable, doesn't change after creation. StatefulWidget: mutable, can update its UI.\"\n  },\n  {\n    \"front\": \"What is the purpose of the `build()` method?\",\n    \"back\": \"It describes the UI of a widget based on its current state. Called whenever a widget needs to be redrawn.\"\n  },\n  {\n    \"front\": \"Name three common layout widgets.\",\n    \"back\": \"Row, Column, and Container.\"\n  },\n  {\n    \"front\": \"What is the role of a `Container` widget?\",\n    \"back\": \"Provides padding, margin, background color, and other styling to its child widget(s).\"\n  },\n  {\n    \"front\": \"How do you add a Text widget to the UI?\",\n    \"back\": \"Using the `Text()` constructor, specifying the text as a string argument.\"\n  },\n  {\n    \"front\": \"What widget is typically used for images?\",\n    \"back\": \"Image.network() or Image.asset()\"\n  },\n  {\n    \"front\": \"What is the `MaterialApp` widget?\",\n    \"back\": \"The root widget for most Flutter apps, providing Material Design theming and navigation.\"\n  },\n  {\n    \"front\": \"How to navigate to a new screen using `Navigator`?\",\n    \"back\": \"Use `Navigator.push()` to push a new route onto the navigation stack and `Navigator.pop()` to return.\"\n  },\n  {\n    \"front\": \"What is a Route in Flutter Navigation?\",\n    \"back\": \"A Route represents a single screen or page in your app's navigation.\"\n  },\n  {\n    \"front\": \"What is the purpose of a `Scaffold` widget?\",\n    \"back\": \"Provides a basic visual layout structure for a Material Design app, including app bar, body, and floating action button.\"\n  },\n  {\n    \"front\": \"How to pass data between screens during navigation?\",\n    \"back\": \"Use arguments with `Navigator.push()` and receive them in the new screen's constructor.\"\n  },\n  {\n    \"front\": \"What is a `Key` in Flutter?\",\n    \"back\": \"Used to uniquely identify widgets, allowing Flutter to efficiently update the UI.  Useful when using dynamic lists or animating widgets.\"\n  },\n  {\n    \"front\": \"What is the difference between `setState()` and `rebuild()`?\",\n    \"back\": \"`setState()` triggers a rebuild of the StatefulWidget. `rebuild()` is called internally by Flutter; you don't directly call it.\"\n  }\n]\n```\n"},
+  //       ],
+  //     },
+  //   ],
+  // });
+
   // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
   // console.log(result.response.text());
